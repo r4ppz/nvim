@@ -112,10 +112,10 @@ return {
     end, { desc = "Reset Buffer (GitSign)" })
 
     -- preview changes/blame
-    map("n", "<leader>gp", function()
+    map("n", "<leader>gP", function()
       require("gitsigns").preview_hunk()
     end, { desc = "Preview Hunk (GitSign)" })
-    map("n", "<leader>gP", function()
+    map("n", "<leader>gp", function()
       require("gitsigns").preview_hunk_inline()
     end, { desc = "Preview Hunk Inline (GitSign)" })
     map("n", "<leader>gb", function()
