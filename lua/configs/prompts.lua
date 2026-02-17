@@ -104,7 +104,7 @@ local prompts = {
       • Explain structural elements only when they directly impact functionality.
       • Keep explanation brief and directly tied to the snippet's content.
     ]]),
-    description = "Concise factual description of code behavior",
+    description = "Simple short explanation",
   },
 
   ExplainDetailed = {
@@ -119,7 +119,7 @@ local prompts = {
       • Maintain clarity: avoid overly verbose language, but do not omit important details.
       • Include relevant language-specific nuances or rules when they affect behavior.
     ]]),
-    description = "Detailed explanation connecting structure, behavior, and subtle implications",
+    description = "Detailed explanation of the code",
   },
 
   ExplainHighLevel = {
@@ -133,7 +133,7 @@ local prompts = {
         • Explain design patterns or architectural roles only when explicitly evident in structure.
         • Reference syntax only when necessary to clarify conceptual behavior.
       ]]),
-    description = "Conceptual overview of code's role and purpose",
+    description = "High level explanation of the code",
   },
 
   ExplainBalanced = {
@@ -147,7 +147,7 @@ local prompts = {
       • Context Integration: Explain how this snippet interacts with its immediate surroundings when context is provided.
       • Behavioral Clarity: Clarify non-obvious behaviors that are syntactically evident but not self-explanatory.
     ]]),
-    description = "Analysis connecting code structure to functionality",
+    description = "Balanced explanation of the code",
   },
 
   ExplainLowLevel = {
@@ -161,7 +161,7 @@ local prompts = {
       • Document all explicit state changes, side effects, or mutations directly present in the code.
       • Identify language-specific behaviors that are syntactically mandated (evaluation rules, precedence, binding).
     ]]),
-    description = "Syntactic and semantic analysis of explicit behaviors",
+    description = "Low level explanation of the code",
   },
 
   Log = {
@@ -237,7 +237,7 @@ local prompts = {
         - Other languages → their most widely accepted documentation convention
       - Output only the documentation comments, formatted exactly as they would appear in source code.
     ]]),
-    description = "Generate documentation comments for selected code",
+    description = "Generate documentation comments",
   },
 
   Tests = {
@@ -284,7 +284,7 @@ local prompts = {
 
       Requirement: Output ONLY the commit message. No preamble, no post-explanation, and no markdown code blocks unless the diff dictates it.
     ]]),
-    description = "Generate deterministic, project-agnostic Conventional Commits",
+    description = "Generate Conventional Commits",
   },
 
   Idiomatic = {
