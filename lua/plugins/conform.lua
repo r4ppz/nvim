@@ -18,6 +18,8 @@ return {
       sh = { "shfmt" },
       python = { "black" },
       rust = { "rustfmt" },
+
+      ["_"] = { "trim_whitespace" },
     },
 
     format_after_save = {

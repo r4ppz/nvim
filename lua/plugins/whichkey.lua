@@ -5,7 +5,8 @@ return {
   opts = function()
     local wk = require("which-key")
     wk.add({
-      { "<leader>l", group = "LSP", icon = "󰒋" },
+      { "<leader>l", group = "LSP Keybinds", icon = "󰒋" },
+      { "<leader>L", group = "LSP Utils", icon = "󰒋" },
       { "<leader>g", group = "Git", icon = "󰊢" },
       { "<leader>c", group = "Copilot", icon = "" },
       { "<leader>f", group = "Picker", icon = "󰭎" },
@@ -17,9 +18,6 @@ return {
       { "<leader>d", group = "Diff", icon = "" },
       { "<leader>b", group = "Buffer", icon = "" },
       { "<leader>u", group = "UI", icon = "󰍹" },
-
-      { "<C-n>", desc = "Toggle NvimTree", icon = "󰙅" },
-      { "<leader>e", desc = "Focus NvimTree", icon = "󰉋" },
     })
 
     return {

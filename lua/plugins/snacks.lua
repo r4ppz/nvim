@@ -54,6 +54,7 @@ return {
       end,
       desc = "Find Files (Snacks)",
     },
+
     {
       "<leader>ff",
       function()
@@ -71,11 +72,37 @@ return {
     },
 
     {
-      "<leader>fG",
+      "bf",
       function()
-        Snacks.picker.grep_buffers()
+        Snacks.picker.grep_buffers({
+          auto_confirm = false,
+          title = "References",
+          layout = {
+            layout = {
+              box = "vertical",
+              row = -1,
+              width = 0,
+              height = 0.4,
+              border = "top",
+              { win = "input", height = 1, border = "bottom" },
+              {
+                box = "horizontal",
+                {
+                  win = "list",
+                  border = "none",
+                },
+                {
+                  win = "preview",
+                  title = "{preview}",
+                  width = 0.5,
+                  border = "left",
+                },
+              },
+            },
+          },
+        })
       end,
-      desc = "Grep Buffers (Snacks)",
+      desc = "Grep Current Buffer (Snacks)",
     },
 
     {

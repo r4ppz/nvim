@@ -50,7 +50,7 @@ return {
       renderer = {
         group_empty = true,
         root_folder_label = false,
-        highlight_git = "icon",
+        highlight_git = "none",
         indent_markers = { enable = true },
         icons = {
           git_placement = "after",
@@ -62,9 +62,9 @@ return {
       },
 
       on_attach = function(bufnr)
-        local nvim_tree_copilot = require("utils/nvim_tree_copilot")
+        local on_attach = require("utils/nvim_tree_copilot")
         require("nvim-tree.api").config.mappings.default_on_attach(bufnr)
-        nvim_tree_copilot.on_attach(bufnr)
+        on_attach(bufnr)
       end,
     }
   end,

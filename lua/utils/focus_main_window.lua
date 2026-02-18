@@ -1,6 +1,6 @@
 local excluded = { "NvimTree", "copilot-chat", "neo-tree", "Outline" }
 
--- Helper: Find a valid "main" window
+-- Find a valid "main" window
 local function focus_main_window()
   local current_buf = vim.api.nvim_get_current_buf()
   local is_sidebar = vim.tbl_contains(excluded, vim.bo[current_buf].filetype)

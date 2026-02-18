@@ -16,11 +16,6 @@ return {
 
   keys = {
     {
-      "<leader>y",
-      "<cmd>Yazi cwd<cr>",
-      desc = "Open Yazi",
-    },
-    {
       "<leader>e",
       "<cmd>Yazi cwd<cr>",
       desc = "Open Yazi",

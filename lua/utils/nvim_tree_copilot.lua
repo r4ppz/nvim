@@ -1,5 +1,3 @@
-local M = {}
-
 local function add_files_to_chat(files)
   local chat = require("CopilotChat")
   if #files == 0 then
@@ -23,15 +21,6 @@ local function add_files_to_chat(files)
   vim.notify(string.format("Added %d file(s) to CopilotChat", #lines), vim.log.levels.INFO)
 end
 
-function M.add_current_file_to_chat()
-  local file = vim.fn.expand("%:p")
-  if file == "" or vim.fn.filereadable(file) == 0 then
-    vim.notify("No valid file in current buffer", vim.log.levels.WARN)
-    return
-  end
-  add_files_to_chat({ file })
-end
-
 local function collect_files_from_directory(dir)
   local all = vim.fn.globpath(dir, "**/*", false, true)
   local files = {}
@@ -51,7 +40,7 @@ local function node_to_files(node)
   end
 end
 
-function M.send_to_copilotchat()
+local function send_to_copilotchat()
   local api = require("nvim-tree.api")
   local marked = api.marks.list()
   local files = {}
@@ -72,12 +61,23 @@ function M.send_to_copilotchat()
   api.tree.close()
 end
 
-local map = require("utils.map")
-
-function M.on_attach(bufnr)
-  map("n", "<C-a>", M.send_to_copilotchat, { desc = "Add file(s) to CopilotChat", buffer = bufnr })
+local function add_current_file_to_chat()
+  local focus_main_window = require("utils.focus_main_window")
+  focus_main_window()
+  local file = vim.fn.expand("%:p")
+  if file == "" or vim.fn.filereadable(file) == 0 then
+    vim.notify("No valid file in current buffer", vim.log.levels.WARN)
+    return
+  end
+  add_files_to_chat({ file })
 end
 
-map("n", "<C-a>", M.add_current_file_to_chat, { desc = "Add current file to CopilotChat" })
+local map = require("utils.map")
 
-return M
+local function on_attach(bufnr)
+  map("n", "<leader>a", send_to_copilotchat, { desc = "Add file(s) to CopilotChat", buffer = bufnr })
+end
+
+map("n", "<leader>a", add_current_file_to_chat, { desc = "Add current file to CopilotChat" })
+
+return on_attach

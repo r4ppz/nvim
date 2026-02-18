@@ -5,7 +5,7 @@
 local map = require("utils.map")
 
 ----------------------------------------
--- Personal?
+-- Personal?!
 ----------------------------------------
 
 map("n", "<C-A-Up>", ":m .-2<CR>==<C-l>", { desc = "Move line up" })
@@ -95,6 +95,9 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 --------------------------------------------------
 -- LSP related
 --------------------------------------------------
+
+map("n", "<leader>Lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
+map("n", "<leader>Li", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 
 -- map("n", "gR", "<cmd>Lspsaga finder ref+def+imp<CR>", {
 --   desc = "Find References (including def and imp)",
@@ -272,6 +275,8 @@ map("n", "c", '"_c', { desc = "Change text without yanking" })
 
 map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
+map({ "n", "v" }, "<c-a>", "^", { desc = "Jump to first non-blank character of the line" })
+map({ "n", "v" }, "<c-e>", "g_", { desc = "Jump to last non-blank character of line" })
 
 map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
 map(
@@ -364,17 +369,13 @@ map(
 )
 
 -- close buffer
+map("n", "<leader>q", function()
+  require("nvchad.tabufline").close_buffer()
+end, { desc = "Buffer close" })
 map("n", "<M-q>", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "Buffer close" })
 map("n", "<S-M-Q>", function()
-  require("nvchad.tabufline").closeAllBufs(false)
-end, { desc = "Close all buffers except current" })
-
-map("n", "<M-x>", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer close" })
-map("n", "<S-M-X>", function()
   require("nvchad.tabufline").closeAllBufs(false)
 end, { desc = "Close all buffers except current" })
 
