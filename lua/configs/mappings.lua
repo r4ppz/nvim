@@ -286,11 +286,22 @@ map(
   { desc = "Highlight selection (no jump)" }
 )
 
--- I dont even know why I have this...
+-- I disable shada btw
+map("n", ";", "<nop>")
+map("n", "'", "<nop>")
+
+-- Five globals (A–E)
 local marks = { "A", "B", "C", "D", "E" }
 for i, mark in ipairs(marks) do
-  map("n", "m" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
-  map("n", "g" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
+  map("n", ";" .. i, "m" .. mark, { desc = "Set global mark " .. mark })
+  map("n", "'" .. i, "`" .. mark, { desc = "Exact jump to global mark " .. mark })
+end
+
+-- All lowercase locals
+for c = string.byte("a"), string.byte("z") do
+  local letter = string.char(c)
+  map("n", ";" .. letter, "m" .. letter, { desc = "Set local mark " .. letter })
+  map("n", "'" .. letter, "`" .. letter, { desc = "Jump to local mark " .. letter })
 end
 
 -------------------------------------------------------------

@@ -32,15 +32,5 @@ return {
       end
       last = now
     end, { desc = "Hover (double tap enters docs)" })
-
-    map("n", "<leader>h", function()
-      local now = vim.loop.now()
-      if now - last < 300 then
-        hover.enter()
-      else
-        hover.open()
-      end
-      last = now
-    end, { desc = "Hover (double tap enters docs)" })
   end,
 }

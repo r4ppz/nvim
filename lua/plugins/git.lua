@@ -66,6 +66,7 @@ return {
     sign_priority = 6,
     update_debounce = 200,
     max_file_length = 10000,
+
     preview_config = {
       border = "single",
       style = "minimal",

@@ -124,6 +124,14 @@ return {
     {
       "<leader>fm",
       function()
+        Snacks.picker.marks()
+      end,
+      desc = "Marks",
+    },
+
+    {
+      "<leader>fM",
+      function()
         Snacks.picker.man()
       end,
       desc = "Man Pages (Snacks)",
