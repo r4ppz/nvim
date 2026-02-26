@@ -18,6 +18,7 @@ return {
       sh = { "shfmt" },
       python = { "black" },
       rust = { "rustfmt" },
+      xml = { "lemminx" },
 
       ["_"] = { "trim_whitespace" },
     },
@@ -25,6 +26,7 @@ return {
     format_after_save = {
       timeout_ms = 1000,
       async = true,
+      lsp_format = "fallback",
     },
   },
 
