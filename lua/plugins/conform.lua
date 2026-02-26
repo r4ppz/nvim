@@ -19,6 +19,7 @@ return {
       python = { "black" },
       rust = { "rustfmt" },
       xml = { "lemminx" },
+      java = { "google-java-format" },
 
       ["_"] = { "trim_whitespace" },
     },

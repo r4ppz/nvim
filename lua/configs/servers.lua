@@ -118,7 +118,14 @@ function M.setup(capabilities)
           },
         },
 
-        format = { enabled = true },
+        -- Conform handle formatting.
+        format = {
+          enabled = false,
+        },
+        saveActions = {
+          organizeImports = false,
+        },
+
         import = {
           gradle = {
             enabled = true,
@@ -140,8 +147,6 @@ function M.setup(capabilities)
           referencedLibraries = { "lib/**/*.jar", "./out/**/*.jar" },
         },
 
-        saveActions = { organizeImports = true },
-
         sources = {
           organizeImports = {
             starThreshold = 999,
@@ -150,9 +155,14 @@ function M.setup(capabilities)
         },
       },
     },
+
     on_attach = function(client)
       -- highlighting sucks
       client.server_capabilities.semanticTokensProvider = nil
+
+      -- Disable formatting. Conform handle it.
+      client.server_capabilities.documentFormattingProvider = false
+      client.server_capabilities.documentRangeFormattingProvider = false
     end,
   })
 
