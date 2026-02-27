@@ -99,9 +99,10 @@ map("v", "<leader>/", "gc", { desc = "toggle comment", remap = true })
 map("n", "<leader>Lr", "<cmd>LspRestart<cr>", { desc = "Restart LSP" })
 map("n", "<leader>Li", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 
--- map("n", "gR", "<cmd>Lspsaga finder ref+def+imp<CR>", {
---   desc = "Find References (including def and imp)",
--- })
+map("n", "gR", "<cmd>Lspsaga finder ref+def+imp<CR>", {
+  desc = "Find References (including def and imp)",
+})
+
 -- map("n", "gr", "<cmd>Lspsaga finder<CR>", {
 --   desc = "Find References",
 -- })
@@ -126,7 +127,7 @@ map("n", "<leader>Li", "<cmd>LspInfo<cr>", { desc = "LSP Info" })
 --     },
 --   })
 -- end, { desc = "LSP References (Snacks)" })
---
+
 map("n", "gr", function()
   Snacks.picker.lsp_references({
     auto_confirm = false,

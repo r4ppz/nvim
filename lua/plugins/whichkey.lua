@@ -1,7 +1,7 @@
 return {
   "folke/which-key.nvim",
   event = "VeryLazy",
-  enabled = false,
+  enabled = true,
   cmd = "WhichKey",
   opts = function()
     local wk = require("which-key")

@@ -15,11 +15,11 @@ return {
       resources = "selection",
       selection = "visual",
 
-      temperature = 0,
+      temperature = 0.1,
       -- model = "gpt-4.1",
-      model = "grok-code-fast-1",
+      -- model = "grok-code-fast-1",
       -- model = "gemini-3-flash-preview",
-      -- model = "gpt-5-mini",
+      model = "gpt-5-mini",
       -- model = "gpt-4o",
 
       window = {
