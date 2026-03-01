@@ -126,6 +126,7 @@ end, { desc = "telescope nvchad themes" })
 -- UI
 map("n", "<leader>um", "<cmd>Mason<CR>", { desc = "Mason UI" })
 map("n", "<leader>ul", "<cmd>Lazy<CR>", { desc = "Lazy UI" })
+map("n", "<leader>ui", "<cmd>MasonInstallAll<cr>", { desc = "Mason Install ALl" })
 
 -- Tabs
 map("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })

@@ -53,9 +53,6 @@ return {
         }
       end,
       dependencies = "nvim-telescope/telescope.nvim",
-      keys = {
-        { "<leader>ui", "<cmd>MasonInstallAll<cr>", mode = { "n", "v" }, desc = "Mason Install ALl" },
-      },
     },
     {
       "mason-org/mason-lspconfig.nvim",
