@@ -109,15 +109,23 @@ map("n", "c", '"_c', { desc = "Change text without yanking" })
 
 map({ "n", "v" }, "!", "^", { desc = "Jump to first non-blank character of the line" })
 map({ "n", "v" }, "@", "g_", { desc = "Jump to last non-blank character of line" })
+-- simulate the default terminal binds
 map({ "n", "v" }, "<c-a>", "^", { desc = "Jump to first non-blank character of the line" })
 map({ "n", "v" }, "<c-e>", "g_", { desc = "Jump to last non-blank character of line" })
 
-map("n", "#", [[<Cmd>let @/ = '\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]], { desc = "Highlight word (no jump)" })
+-- Highlights the word without jumping to the next occurrence.
+-- Uses case-insensitive search and enables 'hlsearch'.
+map(
+  "n",
+  "#",
+  [[<Cmd>let @/ = '\c\<'.expand('<cword>').'\>'<CR>:set hlsearch<CR>]],
+  { desc = "Highlight word (no jump, case-insensitive)" }
+)
 map(
   "v",
   "#",
-  [[y<Cmd>let @/ = '\V' . escape(@", '/\')<CR>:set hlsearch<CR>]],
-  { desc = "Highlight selection (no jump)" }
+  [[y<Cmd>let @/ = '\c\V' . escape(@", '/\')<CR>:set hlsearch<CR><Esc>]],
+  { desc = "Highlight selection (no jump, case-insensitive)" }
 )
 
 -- I disable shada btw
