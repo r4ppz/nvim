@@ -328,19 +328,7 @@ map("n", "<leader>t<Right>", "<cmd>tabnext<CR>", { desc = "Next tab" })
 map("n", "<leader>t<Left>", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
 
 -- BUFFERS MANAGEMENT
--- Helper function to safely execute buffer commands
-local function safe_buf_action(action)
-  return function()
-    if vim.wo.winfixbuf then
-      return
-    end
-    local is_floating = vim.api.nvim_win_get_config(0).relative ~= ""
-    if is_floating then
-      return
-    end
-    pcall(action)
-  end
-end
+local safe_buf_action = require("utils.safe_buf_action")
 
 map("n", "<leader>n", "<cmd>enew<CR>", { desc = "Buffer new" })
 
