@@ -46,24 +46,6 @@ autocmd({
   end,
 })
 
--- Indentation
-local four_space_langs = { "python", "java", "rust" }
-autocmd("FileType", {
-  callback = function()
-    local ft = vim.bo.filetype
-    if vim.tbl_contains(four_space_langs, ft) then
-      vim.bo.tabstop = 4
-      vim.bo.shiftwidth = 4
-      vim.bo.softtabstop = 4
-    else
-      vim.bo.tabstop = 2
-      vim.bo.shiftwidth = 2
-      vim.bo.softtabstop = 2
-    end
-    vim.bo.expandtab = true
-  end,
-})
-
 -- vertical help split
 autocmd("BufWinEnter", {
   pattern = "*.txt",
