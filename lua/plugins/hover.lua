@@ -3,7 +3,7 @@ return {
   event = "LspAttach",
   config = function()
     require("hover").setup({
-      providers = { "configs.hover_provider" },
+      providers = { "configs.provider" },
       title = false,
       preview_opts = {
         border = "single",
