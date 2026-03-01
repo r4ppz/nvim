@@ -15,7 +15,40 @@ map({ "n", "t" }, "<A-w>", function()
   })
 end, { desc = "Toggle Floating Terminal" })
 
+-- THis is ahhh
 map({ "n", "t" }, "<M-S-d>", function()
+  local function is_process_running(name)
+    local handle = io.popen("pgrep -x " .. name)
+    if not handle then
+      return false
+    end
+    local result = handle:read("*a")
+    handle:close()
+    return result ~= ""
+  end
+
+  local function file_exists(file, dir)
+    local path = dir .. "/" .. file
+    local f = io.open(path, "r")
+    if f ~= nil then
+      f:close()
+      return true
+    end
+    return false
+  end
+
+  local cwd = vim.fn.getcwd()
+
+  if not is_process_running("dockerd") then
+    vim.notify("dockerd is not running", vim.log.levels.WARN)
+    return
+  end
+
+  if not file_exists("Dockerfile", cwd) then
+    vim.notify("Dockerfile doesn't exist in CWD", vim.log.levels.WARN)
+    return
+  end
+
   focus_main_window()
   local term = require("nvchad.term")
   term.toggle({
@@ -105,15 +138,32 @@ map(
 )
 
 -- close buffer
-map("n", "<leader>q", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer close" })
-map("n", "<M-q>", function()
-  require("nvchad.tabufline").close_buffer()
-end, { desc = "Buffer close" })
-map("n", "<S-M-Q>", function()
-  require("nvchad.tabufline").closeAllBufs(false)
-end, { desc = "Close all buffers except current" })
+map(
+  "n",
+  "<leader>q",
+  safe_buf_action(function()
+    require("nvchad.tabufline").close_buffer()
+  end),
+  { desc = "Buffer close" }
+)
+
+map(
+  "n",
+  "<M-q>",
+  safe_buf_action(function()
+    require("nvchad.tabufline").close_buffer()
+  end),
+  { desc = "Buffer close" }
+)
+
+map(
+  "n",
+  "<S-M-Q>",
+  safe_buf_action(function()
+    require("nvchad.tabufline").closeAllBufs(false)
+  end),
+  { desc = "Close all buffers except current" }
+)
 
 ---------------------------------------------------------------------
 
