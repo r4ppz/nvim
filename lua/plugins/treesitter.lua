@@ -20,6 +20,7 @@ return {
       "rust",
       "python",
       "c",
+      "asm",
       "cpp",
       "hyprlang",
 

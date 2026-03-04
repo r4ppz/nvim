@@ -29,6 +29,7 @@ local servers = {
   "rust_analyzer",
   "hyprls",
   "clangd",
+  "asm_lsp",
 }
 
 return {
