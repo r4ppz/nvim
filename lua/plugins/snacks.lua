@@ -72,7 +72,7 @@ return {
     },
 
     {
-      "bf",
+      "<leader>bf",
       function()
         Snacks.picker.grep_buffers({
           auto_confirm = false,
