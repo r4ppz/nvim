@@ -44,8 +44,8 @@ map({ "n", "t" }, "<M-S-d>", function()
     return
   end
 
-  if not file_exists("Dockerfile", cwd) then
-    vim.notify("Dockerfile doesn't exist in CWD", vim.log.levels.WARN)
+  if not file_exists("docker-compose.yml", cwd) then
+    vim.notify("docker-compose.yml doesn't exist in CWD", vim.log.levels.WARN)
     return
   end
 
