@@ -13,7 +13,6 @@ return {
       json = { "prettierd" },
       markdown = { "prettierd" },
       yaml = { "prettierd" },
-      qml = { "qmlformat" },
 
       lua = { "stylua" },
       sh = { "shfmt" },
@@ -24,6 +23,7 @@ return {
       java = { "google-java-format" },
       go = { "gofmt" },
 
+      qml = { lsp_format = "fallback" },
       php = { lsp_format = "fallback" },
       toml = { lsp_format = "fallback" },
       zig = { "zigfmt" },
