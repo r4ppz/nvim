@@ -3,6 +3,25 @@ return {
     "lewis6991/gitsigns.nvim",
     event = "VeryLazy",
     opts = {
+      -- Prevent attaching while inside Diffview or a diff split
+      on_attach = function(bufnr)
+        local bufname = vim.api.nvim_buf_get_name(bufnr)
+        if bufname:match("^diffview://") then
+          return false
+        end
+
+        local ok, lib = pcall(require, "diffview.lib")
+        if ok and lib.get_current_view() ~= nil then
+          return false
+        end
+
+        for _, win in ipairs(vim.fn.win_findbuf(bufnr)) do
+          if vim.api.nvim_win_is_valid(win) and vim.wo[win].diff then
+            return false
+          end
+        end
+      end,
+
       signs = {
         add = { text = "│" },
         change = { text = "│" },
@@ -46,10 +65,29 @@ return {
     cmd = { "DiffviewOpen", "DiffviewFileHistory" },
     opts = {
       hooks = {
-        diff_buf_win_enter = function(_, winid)
+        -- Detach gitsigns when entering a diff buffer
+        diff_buf_win_enter = function(bufnr, winid)
           if vim.wo[winid].winbar == "%{%v:lua.dropbar()%}" then
             vim.wo[winid].winbar = ""
           end
+
+          pcall(require("gitsigns").detach, bufnr)
+        end,
+
+        -- Re-attach gitsigns to all normal buffers when Diffview closes
+        view_closed = function()
+          vim.schedule(function()
+            local ok, gitsigns = pcall(require, "gitsigns")
+            if not ok then
+              return
+            end
+
+            for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+              if vim.api.nvim_buf_is_loaded(bufnr) and vim.api.nvim_buf_is_valid(bufnr) then
+                pcall(gitsigns.attach, bufnr)
+              end
+            end
+          end)
         end,
       },
 
