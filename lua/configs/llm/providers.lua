@@ -13,6 +13,7 @@ local function define(spec, builtin)
   local output_fn = spec.prepare_output or builtin.copilot.prepare_output
 
   return {
+    disabled = spec.disabled,
     get_url = function()
       return spec.url
     end,
@@ -37,9 +38,10 @@ end
 function M.setup()
   local builtin = require("CopilotChat.config.providers")
 
-  return {
+  local providers = {
     ollama = define({
       url = "http://localhost:11434/v1/chat/completions",
+      disabled = true,
       models = {
         { id = "llama3.2:3b", name = "Llama 3.2 3B", streaming = true },
         { id = "llama3.2:1b", name = "Llama 3.2 1B", streaming = true },
@@ -55,6 +57,7 @@ function M.setup()
       -- models.py https://openrouter.ai/api/v1/ $OPENROUTER_API_KEY --free
       url = "https://openrouter.ai/api/v1/chat/completions",
       api_key = "OPENROUTER_API_KEY",
+      disabled = true,
       models = {
         {
           id = "openrouter/free",
@@ -78,6 +81,7 @@ function M.setup()
       -- models.py https://generativelanguage.googleapis.com/v1beta/openai/ $GEMINI_API_KEY
       url = "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions",
       api_key = "GEMINI_API_KEY",
+      disabled = true,
       models = {
         {
           id = "models/gemini-3.6-flash",
@@ -128,6 +132,7 @@ function M.setup()
     }, builtin),
 
     freetheai = define({
+      disabled = true,
       -- models.py https://api.freetheai.xyz/v1/ $FREETHEAI_API_KEY --free
       url = "https://api.freetheai.xyz/v1/chat/completions",
       api_key = "FREETHEAI_API_KEY",
@@ -178,6 +183,11 @@ function M.setup()
       },
     }, builtin),
   }
+
+  providers.copilot = { disabled = true }
+  providers.github_models = { disabled = true }
+
+  return providers
 end
 
 return M
