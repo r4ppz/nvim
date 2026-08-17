@@ -2,6 +2,7 @@ local function set_highlights()
   vim.api.nvim_set_hl(0, "LspReferenceText", { underline = true, bg = "none" })
   vim.api.nvim_set_hl(0, "LspReferenceRead", { underline = true, bg = "none" })
   vim.api.nvim_set_hl(0, "LspReferenceWrite", { underline = true, bg = "none" })
+  vim.api.nvim_set_hl(0, "LspReferenceTarget", {})
 
   vim.api.nvim_set_hl(0, "MatchParen", {
     fg = "#83A598",
