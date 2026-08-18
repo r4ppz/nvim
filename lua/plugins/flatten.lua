@@ -3,7 +3,8 @@ return {
   lazy = false,
   priority = 1001,
   opts = function()
-    -- Store terminal info: { win = win_id, buf = buf_id, is_float = boolean }
+    -- Store terminal info
+    ---@type {win: integer, buf: integer, is_float: boolean}?
     local saved_terminal = nil
 
     return {
