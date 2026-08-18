@@ -1,11 +1,8 @@
-local win_util = require("utils.window")
 local map = require("utils.map")
 
 -- LazyGit floating terminal
 map("n", { "<M-g>", "<leader>gg" }, function()
-  win_util.toggle_panel(function()
-    Snacks.lazygit.open()
-  end, "snacks_terminal")
+  Snacks.lazygit.open()
 end, { desc = "Lazygit (Snacks)" })
 
 -- gitsign navigation
