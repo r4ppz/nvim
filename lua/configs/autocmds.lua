@@ -3,6 +3,13 @@ local autocmd = vim.api.nvim_create_autocmd
 local map = require("utils.map")
 
 autocmd("FileType", {
+  pattern = "tmux",
+  callback = function()
+    vim.bo.syntax = "tmux"
+  end,
+})
+
+autocmd("FileType", {
   group = mygroup,
   desc = "Better quickfix and location list configuration",
   pattern = "qf",
