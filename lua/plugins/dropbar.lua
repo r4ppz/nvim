@@ -50,7 +50,6 @@ end
 
 return {
   "Bekaboo/dropbar.nvim",
-  dev = false,
   event = "BufReadPost",
   opts = {
     menu = {

@@ -60,7 +60,7 @@ return {
       },
 
       link = {
-        enabled = true,
+        enabled = false,
       },
     },
     ft = { "copilot-chat", "markdown" },
